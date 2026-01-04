@@ -2,21 +2,21 @@
 Before installing the cluster, ensure you have the following:
 
 - SideroLabs Omni must be ready to go. Installation steps are in the repository link below:
-    - [Omni On-Prem installation and configuration](https://github.com/kenlasko/omni/)
+    - [Omni On-Prem installation and configuration](https://github.com/19stephan93/homelab-omni/)
 
 - You will need a workstation (preferably Linux-based) with several tools to get things rolling. Choose one of the following approaches:
     - [Workstation Prep Instructions for Ubuntu-based distributions](/docs/WORKSTATION.md)
-    - [NixOS Workstation Build](https://github.com/kenlasko/nixos-wsl/)
+    - [NixOS Workstation Build](https://github.com/19stephan93/homelab-nixos-wsl/)
 
 - Most of the workloads use NAS-based storage for persistent data. The [NAS Configuration](/docs/NASCONFIG.md) doc shows the configuration for the various things that need to be ready before the cluster can be spun up.
 
 - If this is a rebuild of the existing cluster, make sure to delete all relevant [Tailscale machines](/manifests/network/tailscale) from the [Tailscale Admin Console](https://login.tailscale.com/admin/machines). Otherwise, Tailscale will create duplicate machines with `-1` appended to them. Causes all sorts of weird issues and just looks messy.
 
 # Kubernetes Install
-Ensure that Omnictl/Talosctl is available and connected to your Omni installation and associated servers. Installation steps are [in my Omni repo](https://github.com/kenlasko/omni/).
+Ensure that Omnictl/Talosctl is available and connected to your Omni installation and associated servers. Installation steps are [in my Omni repo](https://github.com/19stephan93/homelab-omni/).
 
 ## Initial Cluster Setup
-This guide assumes you're using a NixOS distribution that is configured to securely store and present all required certificates. For more information, see [my NixOS repo](https://github.com/kenlasko/nixos-wsl/). Otherwise, you will have to manually ensure all supporting files are present.
+This guide assumes you're using a NixOS distribution that is configured to securely store and present all required certificates. For more information, see [my NixOS repo](https://github.com/19stephan93/homelab-nixos-wsl/). Otherwise, you will have to manually ensure all supporting files are present.
 
 Initially, I used tools like Ansible/Terraform to bootstrap the cluster, which worked when each cluster had its own repo. After my changes to use Kustomize and Helm to manage all my clusters from one repo, this no longer worked. After a lot of trial-and-error, I gave up on Terraform and used ChatGPT to create [a rather robust Bash script](/scripts/bootstrap-cluster.sh) to take care of the entire cluster bootstrapping process. 
 
@@ -41,7 +41,7 @@ The script will take care of the following:
 Once the `bootstrap-cluster.sh` script bootstraps the cluster, ArgoCD should take over and install all the remaining applications. ArgoCD sync-waves should install apps in the correct order. The full list of apps and their relative order can be found [here](/argocd-apps).
 
 ## Get Kubernetes token for token-based authentication
-Cluster connectivity can be done via OIDC through Omni, but its a good idea to have secondary access through standard token-based authentication. The cluster is configured for this using [Talos Shared VIP](https://www.talos.dev/v1.9/talos-guides/network/vip/), which makes cluster API access via a shared IP that is advertised by one of the control plane nodes. The address for this is `https://192.168.1.11:6443` and is defined in my [Omni](https://github.com/kenlasko/omni/) repo's [controlplane.yaml](https://github.com/kenlasko/omni/blob/main/patches/controlplane.yaml) patch.
+Cluster connectivity can be done via OIDC through Omni, but its a good idea to have secondary access through standard token-based authentication. The cluster is configured for this using [Talos Shared VIP](https://www.talos.dev/v1.9/talos-guides/network/vip/), which makes cluster API access via a shared IP that is advertised by one of the control plane nodes. The address for this is `https://192.168.1.11:6443` and is defined in my [Omni](https://github.com/19stephan93/homelab-omni/) repo's [controlplane.yaml](https://github.com/19stephan93/homelab-omni/blob/main/patches/controlplane.yaml) patch.
 
 The service account is configured via [kubeapi-serviceaccount.yaml](/manifests/argocd/kubeapi-serviceaccount.yaml) and gets its token when the service account is created.
 

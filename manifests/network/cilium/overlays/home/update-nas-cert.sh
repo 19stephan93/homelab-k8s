@@ -3,7 +3,7 @@
 # Checks for updated LetsEncrypt wildcard cert, validates it, and copies to NAS via SCP.
 # Then restarts necessary services on the NAS to pick up the new cert.
 
-# For more information, see https://github.com/kenlasko/k8s/blob/main/docs/NASCONFIG.md#nas-letsencrypt-certificate-management
+# For more information, see https://github.com/19stephan93/homelab-k8s/blob/main/docs/NASCONFIG.md#nas-letsencrypt-certificate-management
 
 
 set -eu

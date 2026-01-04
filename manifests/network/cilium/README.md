@@ -12,7 +12,7 @@ Cilium has to be the first thing installed after the cluster is first created, b
 Cilium is initially installed via my [bootstrap-cluster.sh](/scripts/bootstrap-cluster.sh) script, and maintained/updated via [Argo CD](/manifests/argocd).
 
 Cilium requires that the [Gateway API](https://gateway-api.sigs.k8s.io/) CRDs are installed prior to enabling Cilium. This is done in two places:
-* In `extraManifests` in the [Talos/Omni cluster definition](https://github.com/kenlasko/omni/blob/main/patches/cluster.yaml)
+* In `extraManifests` in the [Talos/Omni cluster definition](https://github.com/19stephan93/homelab-omni/blob/main/patches/cluster.yaml)
 * In ArgoCD, via the [Cilium application definition](https://github.com/kenlasko/K3S/blob/main/argocd-apps/network/cilium.yaml)
 
 # Service Routing via BGP

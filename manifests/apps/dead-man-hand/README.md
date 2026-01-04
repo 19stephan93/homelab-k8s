@@ -10,7 +10,7 @@ If I don't visit Home Assistant for a week, DMH will start sending me daily emai
 ## Script Update
 I have the message text securely stored in my NixOS secrets that can be used to create a new action (can't modify the existing one) should my financial info need updating.
 
-The [~/nixos/config/sops.nix](https://github.com/kenlasko/nixos-wsl/blob/main/config/sops.nix) NixOS flake makes the content available to the host OS as a file in `/run/secrets`
+The [~/nixos/config/sops.nix](https://github.com/19stephan93/homelab-nixos-wsl/blob/main/config/sops.nix) NixOS flake makes the content available to the host OS as a file in `/run/secrets`
 
 To modify the contents:
 1. Edit the `secrets.yaml` using SOPS: `sops --config ~/nixos/.sops.yaml ~/nixos/config/secrets.yaml`

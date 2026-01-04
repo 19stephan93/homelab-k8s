@@ -45,7 +45,7 @@ The Oracle Cloud Talos OS image is not available on Oracle Cloud but can be buil
 This is my Kubernetes lab environment, which I have historically used to test out new features before deploying to my 'production' Kubernetes cluster. It runs on 1 to 3 Talos VMs as needed on my Windows 11 machine under Hyper-V. It is not typically in use.
 
 ## Remote Access
-Most services are only accessed by myself and are only available via my local network or my Unifi-hosted Wireguard VPN. Services that are publically available such as [UCDialplans.com](https://www.ucdialplans.com) or [Seerr](/manifests/media/seerr) (for my family) are published via my dedicated [cloud-based Pangolin instance](https://github.com/kenlasko/pangolin).
+Most services are only accessed by myself and are only available via my local network or my Unifi-hosted Wireguard VPN. Services that are publically available such as [UCDialplans.com](https://www.ucdialplans.com) or [Seerr](/manifests/media/seerr) (for my family) are published via my dedicated [cloud-based Pangolin instance](https://github.com/19stephan93/homelab-pangolin).
 
 ## Inter-Cluster Communication
 I use the [Tailscale Operator](/manifests/network/tailscale) to securely share data between my home and cloud cluster. I decided to use limited service-level links instead of a cluster-wide link to limit exposure. This does complicate things somewhat, but is generally manageable. 
@@ -95,7 +95,7 @@ Renovate is set to automatically and silently upgrade every software package EXC
 When upgrades for the above packages are found, Renovate will create a pull request that has to be manually approved (or denied). Once approved, ArgoCD manages the actual upgrade as with any other software.
 
 # Cluster Installation Procedures
-[This document](/docs/CLUSTER-INSTALL.md) outlines the steps to install the cluster using [SideroLabs Omni](https://github.com/kenlasko/omni/), a [bootstrap script](/scripts/bootstrap-cluster.sh) and [ArgoCD](/argocd).
+[This document](/docs/CLUSTER-INSTALL.md) outlines the steps to install the cluster using [SideroLabs Omni](https://github.com/19stephan93/homelab-omni/), a [bootstrap script](/scripts/bootstrap-cluster.sh) and [ArgoCD](/argocd).
 
 # Commit Pre-Check
 This repository makes use of [pre-commit](https://pre-commit.com) to guard against accidental secret commits. When you attempt a commit, Pre-Commit will check for secrets and block the commit if one is found. It is currently using [GitGuardian](https://dashboard.gitguardian.com) [ggshield](https://www.gitguardian.com/ggshield) for secret validation. Requires a GitGuardian account, which does offer a free tier for home use. See [this document](/docs/COMMIT-PRECHECK.md) for more information.
@@ -125,6 +125,6 @@ kustomize build k8s/manifests/apps/adguard/overlays/home/ --enable-helm --load-r
 
 # Related Repositories
 Links to my other repositories mentioned or used in this repo:
-- [NetbootXYZ](https://github.com/kenlasko/docker-rpi1/tree/main/netbootxyz): Simplified PXE boot setup for Omni-managed Talos nodes.
-- [NixOS](https://github.com/kenlasko/nixos-wsl): A declarative OS modified to support my Kubernetes cluster
-- [Omni](https://github.com/kenlasko/omni): Creates and manages the Kubernetes clusters.
+- [NetbootXYZ](https://github.com/19stephan93/homelab-docker-rpi1/tree/main/netbootxyz): Simplified PXE boot setup for Omni-managed Talos nodes.
+- [NixOS](https://github.com/19stephan93/homelab-nixos-wsl): A declarative OS modified to support my Kubernetes cluster
+- [Omni](https://github.com/19stephan93/homelab-omni): Creates and manages the Kubernetes clusters.

@@ -2,7 +2,7 @@
 # It installs essential tools like kubectl, k9s, kubeseal, terraform, helm, docker, cilium/hubble CLI tools, kubent, popeye, and omni/talos tools.
 # It also configures bash completions and aliases for easier command-line usage.
 
-# Refer to https://github.com/kenlasko/k8s/blob/main/docs/WORKSTATION.md for full documentation.
+# Refer to https://github.com/19stephan93/homelab-k8s/blob/main/docs/WORKSTATION.md for full documentation.
 
 ---
 - hosts: localhost
@@ -485,7 +485,7 @@
 
       - name: "Install Krew - **MANUAL STEP**"
         debug:
-          msg: "Please follow the Krew installation instructions manually from [Omni installation instructions](https://github.com/kenlasko/omni) to install Krew tools. This is currently not automated in this playbook."
+          msg: "Please follow the Krew installation instructions manually from [Omni installation instructions](https://github.com/19stephan93/homelab-omni) to install Krew tools. This is currently not automated in this playbook."
         tags:
           - workstation_prep
           - omni_talos

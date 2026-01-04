@@ -88,7 +88,7 @@ Use `targetImmediate` to restore to the most immediate restore point (minimal WA
 
 ### Recovering a single database from pg_dump
 To restore a single database, its generally easier to use the `pg_dump` [daily backup](overlays/home/cronjob-pgdump.yaml) as long as you are comfortable with up to 24h of data loss. To restore:
-1. Copy the desired backup from `NAS01/backup/cnpg` into the [NixOS](https://github.com/kenlasko/nixos-wsl) home directory where `psql` is already configured.
+1. Copy the desired backup from `NAS01/backup/cnpg` into the [NixOS](https://github.com/19stephan93/homelab-nixos-wsl) home directory where `psql` is already configured.
 2. Unzip the archive:
 ```bash
 mkdir pg-restore

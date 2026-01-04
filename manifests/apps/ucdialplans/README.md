@@ -1,7 +1,7 @@
 # Introduction
 UCDialplans is my website that allows users to automatically create Teams dialplans for any country in the world. The image is built using Mono and is hosted locally on the internal image registry and on a private Docker repository.
 
-It is accessible to the world via my ~~[Cloudflare Tunnel](/manifests/network/cloudflare)~~ Oracle Cloud-based [Pangolin](https://github.com/kenlasko/pangolin) deployment.
+It is accessible to the world via my ~~[Cloudflare Tunnel](/manifests/network/cloudflare)~~ Oracle Cloud-based [Pangolin](https://github.com/19stephan93/homelab-pangolin) deployment.
 
 Backend storage is provided by [PostgreSQL](/manifests/database/cnpg).
 
